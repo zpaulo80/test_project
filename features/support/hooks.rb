@@ -30,7 +30,7 @@ Before do |scenario|
     raise Exceptions::NoTestIdTagError.new "No Test ID tag was given for this scenario: #{scenario.name}"
   end
   
-  Log.info "Scenario name: #{scenario.name.to_s}. With Id: #{$test_id}".upcase!
+  Log.info "Scenario name: #{scenario.name.to_s}. With Id: #{$test_run.saved_values[:test_id]}".upcase!
 end
 
 

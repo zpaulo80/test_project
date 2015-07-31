@@ -78,7 +78,7 @@ module ConfigFiles
     def load_env_configurations(options)
       Log.debug "Loading environment '#{@environment}' configurations."
       files = load_config_folder(environment_folder(@environment))
-      @configurations = @configurations + files
+      files.nil? ? @configurations = @configurations : @configurations = @configurations + files
     end
 
     # Loads configuration files from a configuration folder
@@ -87,7 +87,7 @@ module ConfigFiles
     def load_config_folder(path)
       files = Dir.glob(File.join(path, '*.yml'))
       if files.empty?
-        log.warn { 'No files .yml to load.' }
+        Log.lwarn 'No files .yml to load.'
         return nil
       end
       #put configurations to a variable
